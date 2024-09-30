@@ -1,0 +1,17 @@
+### Health
+GET {{host}}/actuator/health
+
+### Prices
+GET {{host}}/api/prices?brandId=1&productId=35455&applicationDate=2020-12-31T23:59:59
+
+### No Prices
+GET {{host}}/api/prices?brandId=1&productId=35455&applicationDate=2022-12-31T23:59:59
+
+### Error in date
+GET {{host}}/api/prices?brandId=1&productId=35455&applicationDate=2022-12
+
+### Error in brandId
+GET {{host}}/api/prices?brandId=ZARA&productId=35455&applicationDate=2022-12-31T23:59:59
+
+### Error in productId
+GET {{host}}/api/prices?brandId=1&productId=ZAPATOS&applicationDate=2022-12-31T23:59:59

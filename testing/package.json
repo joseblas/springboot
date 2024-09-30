@@ -1,0 +1,24 @@
+{
+  "name": "load-tester-k6",
+  "version": "1.0.0",
+  "description": "This is a simple docker based load tester meant for devs to be able to profile their apps while benefiting from the flexibility of K6 scripting.",
+  "main": "search.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.10.2",
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "bun": "^1.0.15",
+    "deep-equal": "^2.2.3",
+    "uuid": "^10.0.0"
+  }
+}

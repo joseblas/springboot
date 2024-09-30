@@ -1,0 +1,25 @@
+name: Load Testing
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+
+  LoadTesting:
+    name: Build
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout working directory
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.version }}
+
+      - name: Run load testing
+        run: ./load-search.sh
+        working-directory: ./testing
+

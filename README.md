@@ -66,4 +66,11 @@ Una opcion rapida y sencilla es lanzar los test end to end que dejar lanzado un 
 docker run -e SPRING_PROFILES_ACTIVE=prod  inditex/price-api
 ```
 
+## Integracion con GitHub Actions
+Hay dos actions que se pueden ejecutar manualmente en el repositorio, una para hacer un build (con tests) y otro para lanzar los test de integracion.
+
+En el action del load test se puede ver las estadisticas de la prueba.
+
+En el action del build solo se ejecutan los tests con docker. 
+
 

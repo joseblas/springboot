@@ -73,4 +73,4 @@ En el action del load test se puede ver las estadisticas de la prueba.
 
 En el action del build solo se ejecutan los tests con docker. 
 
-
+Para poder hacer "merge" en el repo hay que pasar los tests de integracion (y por tanto el build).

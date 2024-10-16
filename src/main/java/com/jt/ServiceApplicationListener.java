@@ -1,6 +1,6 @@
-package com.inditex.inditex;
+package com.jt;
 
-import com.inditex.inditex.db.CustomMigration;
+import com.jt.db.CustomMigration;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.ContextRefreshedEvent;

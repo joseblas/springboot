@@ -1,7 +1,7 @@
 FROM eclipse-temurin:23-jdk-alpine AS base
 LABEL authors="Jose Blas Camacho Taboada"
 
-ADD ./build/libs/inditex*.jar price-api.jar
+ADD ./build/libs/*.jar price-api.jar
 
 EXPOSE 80
 

@@ -1,4 +1,4 @@
-package com.inditex.inditex;
+package com.jt;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -42,17 +42,17 @@ public class PriceControllerIntegrationTest {
 
     public static Stream<Arguments> testData() {
         return Stream.of(
-                Arguments.of(1, 35455, "2020-06-14T10:00:00", 35.50),
-                Arguments.of(1, 35455, "2020-06-14T16:00:00", 25.45),
-                Arguments.of(1, 35455, "2020-06-14T21:00:00", 35.50),
-                Arguments.of(1, 35455, "2020-06-15T10:00:00", 30.50),
-                Arguments.of(1, 35455, "2020-06-16T21:00:00", 38.95)
+                Arguments.of(1, 35455, "2020-06-14T10:00:00", 35.50, 1, "2020-06-14T00:00:00", "2020-12-31T23:59:59"),
+                Arguments.of(1, 35455, "2020-06-14T16:00:00", 25.45, 2, "2020-06-14T15:00:00", "2020-06-14T18:30:00"),
+                Arguments.of(1, 35455, "2020-06-14T21:00:00", 35.50, 1, "2020-06-14T00:00:00", "2020-12-31T23:59:59"),
+                Arguments.of(1, 35455, "2020-06-15T10:00:00", 30.50, 3, "2020-06-15T00:00:00", "2020-06-15T11:00:00"),
+                Arguments.of(1, 35455, "2020-06-16T21:00:00", 38.95, 4, "2020-06-15T16:00:00", "2020-12-31T23:59:59")
         );
     }
 
     @ParameterizedTest
     @MethodSource("testData")
-    public void testGetPrice(int brandId, int productId, String applicationDate, double expectedPrice) {
+    public void testGetPrice(int brandId, int productId, String applicationDate, double expectedPrice, int priceList, String startDate, String endDate) {
         webTestClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/api/prices")
                         .queryParam("brandId", brandId)
@@ -62,6 +62,10 @@ public class PriceControllerIntegrationTest {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody()
+                .jsonPath("$.productId").isEqualTo(productId)
+                .jsonPath("$.priceList").isEqualTo(priceList)
+                .jsonPath("$.startDate").isEqualTo(startDate)
+                .jsonPath("$.endDate").isEqualTo(endDate)
                 .jsonPath("$.price").isEqualTo(expectedPrice);
     }
 

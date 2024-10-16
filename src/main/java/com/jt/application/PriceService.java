@@ -1,7 +1,7 @@
-package com.inditex.inditex.application;
+package com.jt.application;
 
-import com.inditex.inditex.domain.Price;
-import com.inditex.inditex.infrastructure.PriceRepository;
+import com.jt.infrastructure.PriceRepository;
+import com.jt.model.GetPriceResponseContent;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class PriceService {
     private PriceRepository priceRepository;
 
-    public Mono<Price> getApplicablePrice(int brandId, int productId, LocalDateTime applicationDate) {
+    public Mono<GetPriceResponseContent> getApplicablePrice(int brandId, int productId, LocalDateTime applicationDate) {
         log.debug("Getting applicable price for brandId: {}, productId: {}, applicationDate: {}", brandId, productId, applicationDate);
         return priceRepository.findApplicablePrice(brandId, productId, applicationDate);
     }

@@ -1,4 +1,4 @@
-package com.inditex.inditex;
+package com.jt;
 
 import org.springframework.boot.test.context.TestConfiguration;
 

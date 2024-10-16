@@ -43,12 +43,16 @@ structure GetPriceInput {
 }
 
 structure GetPriceOutput {
-    message: String
-
     @range(min: 0.0)
     price: Double
 
     productId: Integer
 
     priceList: Integer
+
+    @timestampFormat("date-time")
+    startDate: Timestamp
+
+    @timestampFormat("date-time")
+    endDate: Timestamp
 }

@@ -4,8 +4,8 @@ plugins {
     id("org.springframework.boot") version "3.3.4"
     id("io.spring.dependency-management") version "1.1.6"
     id("org.openapi.generator") version "7.9.0"
-
     id("software.amazon.smithy.gradle.smithy-jar").version("1.1.0")
+    id("jacoco")
 }
 
 group = "com.jt"
@@ -34,13 +34,8 @@ configurations {
     }
 }
 
-
-
 dependencies {
-
-    implementation("org.springframework.boot:spring-boot-starter") {
-        exclude(group = "commons-logging", module = "commons-logging")
-    }
+    implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-configuration-processor")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
@@ -51,7 +46,9 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
     annotationProcessor("org.projectlombok:lombok")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group = "com.vaadin.external.google", module = "android-json")
+    }
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:postgresql")
@@ -60,7 +57,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-webflux-ui:1.8.0")
 
     implementation("org.openapitools:jackson-databind-nullable:0.2.6")
-
+    // Smithy dependencies
     implementation("software.amazon.smithy:smithy-model:[1.0, 2.0[")
     implementation("software.amazon.smithy:smithy-codegen-core:[1.0, 2.0[")
     implementation("software.amazon.smithy:smithy-openapi:[1.0, 2.0[") // Ensure this matches your plugin version
@@ -114,6 +111,19 @@ tasks.jar {
     enabled = false
 }
 
+jacoco {
+    toolVersion = "0.8.12"
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // Ensure tests are run before generating the report
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+}
+
 tasks.test {
     // Show standard output and standard error for every test case
     testLogging {
@@ -131,8 +141,10 @@ tasks.test {
     afterTest(KotlinClosure2<TestDescriptor, TestResult, Unit>({ descriptor, result ->
         logger.lifecycle("Test: ${descriptor.name} [${result.resultType}]")
     }))
+    finalizedBy(tasks.jacocoTestReport)
 }
 
 java.sourceSets["main"].java {
     srcDirs("model", "src/main/smithy")
 }
+

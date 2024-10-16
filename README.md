@@ -1,4 +1,4 @@
-#  Prueba de Codigo pedida por Inditex/GFT
+#  Prueba de Codigo 
 
 Hay que construir una aplicacion (REST API) que tiene un unico endpoint para consultar precios de productos en una tienda.  
 
@@ -56,14 +56,14 @@ Para ejecutar el microservicio en docker en local.
 
 ```bash
 ./gradle clean build
-docker build  . -t inditex/price-api
+docker build  . -t josetaboada/price-api
 ```
 
 Para ejecutar en modo local/produccion (fake):
 Hay que tener una instancia de postgres corriendo y configurado en el application-prod.properties. 
 Una opcion rapida y sencilla es lanzar los test end to end que dejar lanzado un postgres en docker y esta pre-configurado en la aplicacion (application-prod.properties).
 ```bash
-docker run -e SPRING_PROFILES_ACTIVE=prod  inditex/price-api
+docker run -e SPRING_PROFILES_ACTIVE=prod  josetaboada/price-api
 ```
 
 ## Integracion con GitHub Actions

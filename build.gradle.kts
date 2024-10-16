@@ -68,7 +68,7 @@ openApiGenerate {
     generatorName = "spring"
     apiNameSuffix = "PriceController"
     inputSpec = "$rootDir/build/smithyprojections/${rootProject.name}/openapi/openapi/PriceControllerApi.openapi.json"
-    outputDir = "$buildDir/generated"
+    outputDir = "$rootDir/build/generated"
     apiPackage = "com.jt.openapi"
     modelPackage = "com.jt.model"
     configOptions = mapOf("library" to "spring-boot",
@@ -102,7 +102,7 @@ tasks.named("compileJava") {
 sourceSets {
     main {
         java {
-            srcDir("$buildDir/generated/src/main/java")
+            srcDir("$rootDir/build/generated/src/main/java")
         }
     }
 }

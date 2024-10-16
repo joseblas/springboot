@@ -21,11 +21,6 @@ public class PriceController implements ApiPriceController {
     private PriceService priceService;
 
     @Override
-    @RequestMapping(
-            method = RequestMethod.GET,
-            value = "/api/prices",
-            produces = { "application/json" }
-    )
     public Mono<ResponseEntity<GetPriceResponseContent>> getPrice(
             @NotNull @Parameter(name = "brandId", description = "", required = true, in = ParameterIn.QUERY) @Valid @RequestParam(value = "brandId", required = true) Integer brandId,
             @NotNull @Parameter(name = "productId", description = "", required = true, in = ParameterIn.QUERY) @Valid @RequestParam(value = "productId", required = true) Integer productId,

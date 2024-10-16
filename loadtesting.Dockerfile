@@ -19,12 +19,17 @@ RUN chmod +x /entrypoint.sh
 WORKDIR /app
 
 # Copy gradle files
-COPY gradle /app/gradle
-COPY gradlew /app/gradlew
-COPY build.gradle.kts /app/build.gradle.kts
+#COPY gradle /app/gradle
+#COPY gradlew /app/gradlew
+#COPY build.gradle.kts /app/build.gradle.kts
+#COPY settings.gradle.kts /app/settings.gradle.kts
+#COPY smithy-build.json /app/smithy-build.json
+#COPY model /app/model
+
+COPY ./ /app
 
 # Copy the rest of the project files
-COPY src /app/src
+#COPY src /app/src
 
 # Set environment variables for Java
 ENV JAVA_HOME=/opt/java/openjdk

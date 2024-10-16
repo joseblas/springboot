@@ -15,6 +15,9 @@ java -version
 
 echo "Java installed successfully!"
 
-cd /app && ./gradlew build --no-daemon
-cp /app/build/libs/*.jar ./app.jar
+cd /app && ./gradlew clean build --no-daemon
+pwd
+ls -la
+ls -la build
+cp build/libs/*.jar ./app.jar
 java -jar ./app.jar --server.port=80

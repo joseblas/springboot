@@ -35,7 +35,7 @@ jobs:
       - name: Run gradle build
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: check build
+          arguments: check build testCodeCoverageReport
 
 
       - name: Publish Test Report
@@ -47,3 +47,5 @@ jobs:
           detailed_summary: true
           include_passed: false
 
+      - name: Summarize tests results
+        uses: jeantessier/code-coverage-summary-action@v1

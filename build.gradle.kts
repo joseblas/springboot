@@ -6,6 +6,8 @@ plugins {
     id("org.openapi.generator") version "7.9.0"
     id("software.amazon.smithy.gradle.smithy-jar").version("1.1.0")
     id("jacoco")
+    id("jacoco-report-aggregation")
+
 }
 
 group = "com.jt"

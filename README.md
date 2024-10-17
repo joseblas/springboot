@@ -44,14 +44,17 @@ de datos. Pero ahora mismo no conozco ninguna herramienta que trabaje con codigo
 
 Para acceder a Swagger/OpenAPI: http://127.0.0.1:8080/webjars/swagger-ui/index.html
 
-
 # Nota
 Tengo el portatil con teclado americano y no tengo la tecla de la ñ, y los acentos.
 
-# Ejecution local
+# Pruebas rapidas de API
+Para poder probar la API de forma sencilla y rapida se han incluido unos scritps en la carpeta `requests` que se ejecutar de forma integrada en el IDE que utilizo (Intellij Idea).
+Podria hacerse para otras hrrramientas como PostMan de forma similar, pero por simplicidad lo he hecho asi.  
 
 
-# Docker
+# Ejecucion local
+
+## Docker
 Para ejecutar el microservicio en docker en local.
 
 ```bash
@@ -66,7 +69,7 @@ Una opcion rapida y sencilla es lanzar los test end to end que dejar lanzado un 
 docker run -e SPRING_PROFILES_ACTIVE=prod  josetaboada/price-api
 ```
 
-## Integracion con GitHub Actions
+# Integracion con GitHub Actions
 Hay dos actions que se pueden ejecutar manualmente en el repositorio, una para hacer un build (con tests) y otro para lanzar los test de integracion.
 
 En el action del load test se puede ver las estadisticas de la prueba.
